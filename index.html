@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House & Pet Care Guide | June 13–20</title>
+<style>
+  :root{
+    --navy:#23395d;
+    --teal:#2f7d7e;
+    --sand:#fff7e8;
+    --soft:#f7fbfb;
+    --rose:#fff0f0;
+    --gold:#f2c14e;
+    --ink:#1f2933;
+    --muted:#5f6b76;
+    --line:#d9e4e4;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,#eaf8f8 0%, #fffdf7 55%, #ffffff 100%);
+    line-height:1.5;
+  }
+
+  .page{
+    max-width:950px;
+    margin:0 auto;
+    padding:24px;
+  }
+
+  .hero{
+    background:linear-gradient(135deg,var(--navy),var(--teal));
+    color:white;
+    border-radius:22px;
+    padding:26px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero:after{
+    content:"";
+    position:absolute;
+    right:-60px;
+    top:-60px;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.14);
+  }
+
+  h1{
+    margin:0 0 8px;
+    font-size:2rem;
+    letter-spacing:.2px;
+  }
+
+  .subtitle{
+    font-size:1.05rem;
+    margin:0;
+    opacity:.95;
+  }
+
+  .badge-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+  }
+
+  .badge{
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:bold;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px;
+    margin-top:18px;
+  }
+
+  .card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 6px 16px rgba(35,57,93,.07);
+    page-break-inside:avoid;
+  }
+
+  .card.full{ grid-column:1 / -1; }
+
+  h2{
+    color:var(--navy);
+    margin:0 0 12px;
+    font-size:1.28rem;
+    border-bottom:3px solid #d9eeee;
+    padding-bottom:8px;
+  }
+
+  h3{
+    color:var(--teal);
+    margin:14px 0 8px;
+    font-size:1.05rem;
+  }
+
+  .callout{
+    background:var(--sand);
+    border-left:6px solid var(--gold);
+    padding:14px;
+    border-radius:14px;
+    margin:12px 0;
+  }
+
+  .urgent{
+    background:var(--rose);
+    border-left:6px solid #d9534f;
+  }
+
+  .contact{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:8px;
+    padding:9px 0;
+    border-bottom:1px solid #edf2f2;
+  }
+
+  .contact:last-child{ border-bottom:0; }
+
+  .phone{
+    font-weight:bold;
+    color:var(--navy);
+    white-space:nowrap;
+  }
+
+  ul,ol{
+    padding-left:22px;
+    margin-top:8px;
+  }
+
+  li{ margin:7px 0; }
+
+  .checklist{
+    list-style:none;
+    padding-left:0;
+  }
+
+  .checklist li{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    padding:8px 0;
+    border-bottom:1px dashed #e3eded;
+  }
+
+  .box{
+    width:18px;
+    height:18px;
+    border:2px solid var(--teal);
+    border-radius:4px;
+    flex:0 0 18px;
+    margin-top:2px;
+  }
+
+  .small{
+    color:var(--muted);
+    font-size:.92rem;
+  }
+
+  .smart-plug{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    background:var(--soft);
+    border-radius:16px;
+    padding:14px;
+    margin-top:12px;
+  }
+
+  .plug-art{
+    width:105px;
+    height:105px;
+    background:white;
+    border:3px solid #cbd8d8;
+    border-radius:26px;
+    position:relative;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,.04);
+    flex:0 0 105px;
+  }
+
+  .plug-art:before{
+    content:"";
+    position:absolute;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:4px solid var(--teal);
+    top:28px;
+    left:28px;
+    background:#f7ffff;
+  }
+
+  .plug-art:after{
+    content:"RESET";
+    position:absolute;
+    bottom:11px;
+    left:0;
+    right:0;
+    text-align:center;
+    font-size:.65rem;
+    color:var(--muted);
+    font-weight:bold;
+  }
+
+  .daily{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .mini{
+    background:var(--soft);
+    border:1px solid #d9eeee;
+    border-radius:14px;
+    padding:12px;
+  }
+
+  .mini strong{ color:var(--navy); }
+
+  .footer{
+    text-align:center;
+    color:var(--muted);
+    padding:18px 0 4px;
+    font-size:.9rem;
+  }
+
+  @media (max-width:760px){
+    .page{ padding:14px; }
+    .grid{ grid-template-columns:1fr; }
+    .daily{ grid-template-columns:1fr; }
+    h1{ font-size:1.55rem; }
+    .hero{ padding:20px; border-radius:18px; }
+    .contact{ grid-template-columns:1fr; }
+    .phone{ white-space:normal; }
+  }
+
+  @media print{
+    body{ background:white; }
+    .page{ max-width:100%; padding:.45in; }
+    .hero{
+      background:white !important;
+      color:black;
+      border:2px solid #999;
+      box-shadow:none;
+    }
+    .hero:after{ display:none; }
+    .badge{
+      color:black;
+      border:1px solid #999;
+      background:white;
+    }
+    .card{
+      box-shadow:none;
+      border:1px solid #999;
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+    a{ color:black; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <section class="hero">
+    <h1>House & Pet Care Guide</h1>
+    <p class="subtitle">While we are at Holden Beach • June 13–20</p>
+    <div class="badge-row">
+      <div class="badge">Beach address: 1333 Ocean Blvd. West</div>
+      <div class="badge">Check mail/packages daily</div>
+      <div class="badge">Trash out Sunday night</div>
+    </div>
+  </section>
+<div class="callout">
+Thank you so much for helping care for our home and animals while we are away. We truly appreciate your time and kindness. If you have any questions at all, please call or text us anytime.
+</div>
+
+  <div class="grid">
+
+    <section class="card full">
+      <h2>Emergency & Contact Information</h2>
+      <div class="contact"><div><strong>Caroll mobile</strong></div><div class="phone"><a href="tel:7042317947">704-231-7947</a></div></div>
+      <div class="contact"><div><strong>Bryan mobile</strong></div><div class="phone"><a href="tel:7042452696">704-245-2696</a></div></div>
+      <div class="contact"><div><strong>Janice Waddell</strong> — Bryan’s mom; call if someone needs to come help at the house</div><div class="phone"><a href="tel:7042240985">704-224-0985</a></div></div>
+      <div class="contact"><div><strong>Salisbury Animal Hospital</strong> — vet</div><div class="phone"><a href="tel:7046370227">704-637-0227</a></div></div>
+
+      <div class="callout urgent">
+        <strong>For emergencies about the house:</strong> call Caroll or Bryan first. If someone needs to come over and help, call Janice Waddell.
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2>Daily Quick Checklist</h2>
+      <div class="daily">
+        <div class="mini"><strong>Morning</strong><br>Check Daisy’s water bowls, BeeDee’s lights/water/fountain, ET turtle as scheduled, front porch/mail.</div>
+        <div class="mini"><strong>Midday</strong><br>Feed Daisy between 12–3. Let her out often and make sure she goes potty.</div>
+        <div class="mini"><strong>Evening</strong><br>Check lights, doors, packages, pet areas, water bowls, and stray cat food/water if needed.</div>
+      </div>
+
+      <ul class="checklist">
+        <li><span class="box"></span><span>Check mail and front porch for packages daily.</span></li>
+        <li><span class="box"></span><span>Check Daisy’s water bowls: one in the kitchen and one in the master bathroom upstairs beside the shower.</span></li>
+        <li><span class="box"></span><span>Use the white pitcher and filtered water from the refrigerator for dog water and the counter ice maker.</span></li>
+        <li><span class="box"></span><span>Let Daisy out every 2–3 hours, or when she gets up.</span></li>
+        <li><span class="box"></span><span>Feed Daisy once daily between 12:00–3:00 p.m.</span></li>
+        <li><span class="box"></span><span>Check BeeDee’s lights and clean up poop promptly.</span></li>
+        <li><span class="box"></span><span>Feed ET the turtle on alternating days.</span></li>
+        <li><span class="box"></span><span>Put trashcan by the road Sunday night for early Monday pickup; bring it back after pickup.</span></li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>Daisy Care</h2>
+      <div class="callout">
+        <strong>Feeding time:</strong> once per day, midday between 12:00–3:00 p.m.
+      </div>
+
+      <h3>Food Instructions</h3>
+      <ol>
+        <li>Use one prefilled bowl of Dr. Harvey’s oat mixture each day.</li>
+        <li>Add <strong>3 squirts of fish oil</strong>.</li>
+        <li>Heat water in the teapot and mix it into the oat mixture until it gets really soft.</li>
+        <li>Add <strong>1/4 pack of Farmer’s Dog food</strong> from the refrigerator on top of the oat mixture.</li>
+        <li>Each pack of Farmer’s Dog lasts 4 days. When the last portion runs out, get a new pack from the freezer and put it in a bowl in the refrigerator to thaw for the next day.</li>
+      </ol>
+
+      <h3>Going Outside</h3>
+      <ul>
+        <li>Try to let Daisy out every 2–3 hours, or when she gets up and when she goes to the bathroom and comes back give her a treat, you can break apart the larger ones to give to her after going to the bathroom and coming back inside when called. </li>
+        <li>Sometimes she needs to be prodded to go to the bathroom. Leave her out until she goes if needed.</li>
+        <li>She may run to the neighbor’s house if she sees people. If you go over there, she will usually want to come back with you. That is okay as long as you watch her and the neighbors are okay with it.</li>
+        <li>Use the small liver treats from the bowl to help her come to you. Shaking the treat bowl helps, especially if she goes after a squirrel.</li>
+      </ul>
+
+      <h3>Kennel</h3>
+      <ul>
+        <li>Daisy should not stay in the kennel more than 4–5 hours.</li>
+        <li>The kennel is under the turtle tank, on the left side.</li>
+        <li>Make sure there is a little water in the bowl on the side of the kennel.</li>
+      </ul>
+
+ <h3>Dog Water Fountains</h3>
+      <ul>
+        <li>Check dog water fountains to make sure there is enough water to run them.</li>
+        <li>Add water from refrigerator in white pitcher if they need water</li>
+        <li>There is a bowl in the kitchen and one upstairs in master bathroom beside showers</li>
+      </ul>
+
+      <h3>Clean-Up</h3>
+      <ul>
+        <li>Cleaner is beside the treats on the ice box chest next to the back door, you can use this to clean up accidents.</li>
+      </ul>
+    </section>
+<div class="callout">
+<strong>Important:</strong> Daisy is very friendly and usually does well with visitors, but she may run toward the neighbors if she sees people outside. Please keep an eye on her when outdoors.
+</div>
+
+    <section class="card">
+      <h2>Stray Cats</h2>
+      <p>There are stray cats we feed. One had a collar and would come and go, and eventually kind of stayed, we call Fuzzy, but she stays outside.</p>
+      <ul>
+        <li>Cat food is on the same chest where the treats and cleaner are kept.</li>
+        <li>You can put food in the bowl on the back porch or front porch.</li>
+      </ul>
+    </section>
+<li>Please make sure fresh water is available for the cats when possible, especially during hot weather.</li>
+
+    <section class="card">
+      <h2>Counter Ice Maker</h2>
+      <p>The counter ice maker may need water added.</p>
+      <ul>
+        <li>It will say it needs water and will make a loud noise.</li>
+        <li>Add water to the container on the side of the ice maker.</li>
+        <li>Use only filtered water from the refrigerator.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>ET the Turtle</h2>
+      <p>Feed ET on alternating days.</p>
+      <ul>
+        <li>Give one green frozen block of food.</li>
+        <li>Add 1–2 frozen fish.</li>
+        <li>Food is in the top freezer.</li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>BeeDee the Bearded Dragon</h2>
+
+      <h3>Food</h3>
+      <ul>
+        <li>Give collard and other green mix from the big container with the yellow lid.</li>
+        <li>Add a few chopped carrot pieces and squash pieces.</li>
+      </ul>
+
+      <h3>Poop / Cleaning</h3>
+      <div class="callout urgent">
+        <strong>Important:</strong> BeeDee’s poop needs to be cleaned promptly because she has had bacterial gut infections from feces particles getting transferred into water and food.
+      </div>
+      <ul>
+        <li>She will probably poop every day or every other day.</li>
+        <li>Clean up poop and anywhere it is smeared.</li>
+        <li>If poop is on BeeDee, wipe her with a warm paper towel.</li>
+        <li>If she needs a bath, call Caroll or Bryan first for help/instructions.</li>
+      </ul>
+
+      <h3>Water / Fountain</h3>
+      <ul>
+        <li>Water should be okay in the fountain, but check to make sure there is still water and it has not leaked.</li>
+      </ul>
+
+      <h3>Lights</h3>
+      <ul>
+        <li>During the day, two lights should be on.</li>
+        <li>At night, one infrared heat light should be on.</li>
+        <li>Day lights: turn on at 7:00 a.m. and off at 7:00 p.m.</li>
+        <li>Night light: turns on at 7:00 p.m. and off at 7:00 a.m.</li>
+        <li>If the lights need to be reset, push the circular button on the side of the Amazon smart plug.</li>
+      </ul>
+
+      <div class="smart-plug">
+        <div class="plug-art" aria-label="Simple drawing of Amazon smart plug reset button"></div>
+        <div>
+          <strong>Smart plug reset reminder:</strong><br>
+          Look for the circular button on the side of the Amazon smart plug. Press it to reset the lights if the schedule is not working.
+        </div>
+      </div>
+    </section>
+<div class="callout urgent">
+<strong>Very Important:</strong> BeeDee has previously developed bacterial infections from fecal contamination. Please clean any stool immediately and make sure food and water remain clean.
+</div>
+
+    <section class="card">
+      <h2>Plants</h2>
+      <p>Plants will be watered before we leave and should be okay.</p>
+    </section>
+
+    <section class="card">
+      <h2>Front Pond / Waterfall Filter</h2>
+      <p>If the fountain filter on the front pond under the waterfall gets really loud, add water.  This generally means it needs more water and should be covered with water.</p>
+      <ol>
+        <li>Turn on the water from the back of the house under the kitchen window.</li>
+        <li>Fill the pond until the filter is totally submerged.</li>
+      </ol>
+    </section>
+
+    <section class="card full">
+      <h2>House Reminders</h2>
+      <ul class="checklist">
+        <li><span class="box"></span><span>Mail checked.</span></li>
+        <li><span class="box"></span><span>Front porch/packages checked.</span></li>
+        <li><span class="box"></span><span>Doors checked.</span></li>
+        <li><span class="box"></span><span>Pet water checked.</span></li>
+        <li><span class="box"></span><span>BeeDee’s lights checked.</span></li>
+        <li><span class="box"></span><span>Trash out Sunday night and brought back after Monday pickup.</span></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    House & Pet Care Guide • June 13–20 • Phone-friendly and printable
+  </div>
+
+</div>
+</body>
+</html>
